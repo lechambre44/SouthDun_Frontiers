@@ -1,0 +1,17 @@
+LIST 7 SthDn_Trans_Scen0.lst
+BAS6  1 SthDn_Trans_Scen0.bas
+DIS  29 SthDn_Trans_Scen0.dis
+LPF 11 SthDn_Trans_Scen0.lpf
+ZONE 15 SthDn_Trans_Scen0.zone
+WEL 12 SthDn_Trans_Scen0.wel
+DRN 13 SthDn_Trans_Scen0.drn
+RIV 14 SthDn_Trans_Scen0.riv
+RCH 18 SthDn_Trans_Scen0.rch
+CHD 40 SthDn_Trans_Scen0.chd
+OC  22 SthDn_Trans_Scen0.oc
+PCG 19 SthDn_Trans_Scen0.pcg
+DATA(BINARY) 50 SthDn_Trans_Scen0.cbb
+DATA(BINARY) 54 SthDn_Trans_Scen0.cbw
+DATA(BINARY) 51 SthDn_Trans_Scen0.crc
+DATA(BINARY) 30 SthDn_Trans_Scen0.hds
+DATA(BINARY) 31 SthDn_Trans_Scen0.ddn

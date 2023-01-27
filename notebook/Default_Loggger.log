@@ -1,0 +1,24 @@
+2023-01-26 11:31:37.859913 starting: opening Default_Loggger.log for logging
+2023-01-26 11:31:37.859913 starting: plot res_1to1
+2023-01-26 11:31:37.870067 starting: plotting 1to1 for ghb-hd
+2023-01-26 11:31:37.878170 no non-zero obs for group 'ghb-hd'
+2023-01-26 11:31:37.878170 finished: plotting 1to1 for ghb-hd took: 0:00:00.008103
+2023-01-26 11:31:37.878170 starting: plotting 1to1 for less_hd
+2023-01-26 11:31:54.460954 finished: plotting 1to1 for less_hd took: 0:00:16.582784
+2023-01-26 11:31:54.460954 starting: plotting 1to1 for oname:drn_otype:lst_usecol:q
+2023-01-26 11:31:54.460954 no non-zero obs for group 'oname:drn_otype:lst_usecol:q'
+2023-01-26 11:31:54.460954 finished: plotting 1to1 for oname:drn_otype:lst_usecol:q took: 0:00:00
+2023-01-26 11:31:54.460954 starting: plotting 1to1 for oname:drnsum_otype:lst_usecol:sum
+2023-01-26 11:31:56.762160 finished: plotting 1to1 for oname:drnsum_otype:lst_usecol:sum took: 0:00:02.301206
+2023-01-26 11:31:56.762160 starting: plotting 1to1 for oname:ghb_otype:lst_usecol:q
+2023-01-26 11:31:56.762160 no non-zero obs for group 'oname:ghb_otype:lst_usecol:q'
+2023-01-26 11:31:56.762160 finished: plotting 1to1 for oname:ghb_otype:lst_usecol:q took: 0:00:00
+2023-01-26 11:31:56.762160 starting: plotting 1to1 for oname:ghbsum_otype:lst_usecol:sum
+2023-01-26 11:31:56.762160 no non-zero obs for group 'oname:ghbsum_otype:lst_usecol:sum'
+2023-01-26 11:31:56.762160 finished: plotting 1to1 for oname:ghbsum_otype:lst_usecol:sum took: 0:00:00
+2023-01-26 11:31:56.762160 starting: plotting 1to1 for oname:hd_otype:lst_usecol:obsval
+2023-01-26 11:31:56.762160 no non-zero obs for group 'oname:hd_otype:lst_usecol:obsval'
+2023-01-26 11:31:56.762160 finished: plotting 1to1 for oname:hd_otype:lst_usecol:obsval took: 0:00:00
+2023-01-26 11:31:56.770208 starting: plotting 1to1 for oname:wl_otype:lst_usecol:obsval
+2023-01-26 11:31:59.648169 finished: plotting 1to1 for oname:wl_otype:lst_usecol:obsval took: 0:00:02.877961
+2023-01-26 11:32:00.646357 finished: plot res_1to1 took: 0:00:22.786444

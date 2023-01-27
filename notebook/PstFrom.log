@@ -1,0 +1,232 @@
+2023-01-27 14:16:32.397467 starting: opening PstFrom.log for logging
+2023-01-27 14:16:32.397467 starting PstFrom process
+2023-01-27 14:16:32.398463 starting: setting up dirs
+2023-01-27 14:16:32.398463 starting: removing existing new_d '..\template_hist_ss'
+2023-01-27 14:16:32.429327 finished: removing existing new_d '..\template_hist_ss' took: 0:00:00.030864
+2023-01-27 14:16:32.429327 starting: copying original_d '..\Dunedin_SS_base' to new_d '..\template_hist_ss'
+2023-01-27 14:16:32.451231 finished: copying original_d '..\Dunedin_SS_base' to new_d '..\template_hist_ss' took: 0:00:00.021904
+2023-01-27 14:16:32.451231 finished: setting up dirs took: 0:00:00.052768
+2023-01-27 14:16:32.451231 transform was not passed, setting default tranform to 'log'
+2023-01-27 14:16:32.451231 starting: adding grid type m style parameters for file(s) ['DRN_0000.dat']
+2023-01-27 14:16:32.452226 starting: using geostruct:name:struct1,nugget:0.0,structures:
+name:var1,contribution:1.0,a:100.0,anisotropy:1.0,bearing:0.0
+
+2023-01-27 14:16:32.452226 starting: loading list-style ..\template_hist_ss\DRN_0000.dat
+2023-01-27 14:16:32.452226 starting: reading list-style file: ..\template_hist_ss\DRN_0000.dat
+2023-01-27 14:16:32.484086 finished: reading list-style file: ..\template_hist_ss\DRN_0000.dat took: 0:00:00.031860
+2023-01-27 14:16:32.485082 loaded list-style '..\template_hist_ss\DRN_0000.dat' of shape (1259, 5)
+2023-01-27 14:16:32.494042 finished: loading list-style ..\template_hist_ss\DRN_0000.dat took: 0:00:00.041816
+2023-01-27 14:16:32.494042 starting: writing list-style template file '..\template_hist_ss\drncond-gr_inst0_grid.csv.tpl'
+2023-01-27 14:16:32.508976 WARNING: get_xy() warning: position of i and j in index_cols not specified, assume (i,j) are final two entries in index_cols.
+2023-01-27 14:16:32.656336 finished: writing list-style template file '..\template_hist_ss\drncond-gr_inst0_grid.csv.tpl' took: 0:00:00.162294
+2023-01-27 14:16:32.663299 finished: adding grid type m style parameters for file(s) ['DRN_0000.dat'] took: 0:00:00.212068
+2023-01-27 14:16:32.663299 transform was not passed, setting default tranform to 'log'
+2023-01-27 14:16:32.663299 starting: adding constant type m style parameters for file(s) ['DRN_0000.dat']
+2023-01-27 14:16:32.663299 starting: loading list-style ..\template_hist_ss\DRN_0000.dat
+2023-01-27 14:16:32.663299 starting: reading list-style file: ..\template_hist_ss\DRN_0000.dat
+2023-01-27 14:16:32.669272 finished: reading list-style file: ..\template_hist_ss\DRN_0000.dat took: 0:00:00.005973
+2023-01-27 14:16:32.669272 loaded list-style '..\template_hist_ss\DRN_0000.dat' of shape (1259, 5)
+2023-01-27 14:16:32.676241 finished: loading list-style ..\template_hist_ss\DRN_0000.dat took: 0:00:00.012942
+2023-01-27 14:16:32.676241 starting: writing list-style template file '..\template_hist_ss\drncond-cn_inst0_constant.csv.tpl'
+2023-01-27 14:16:32.716066 finished: writing list-style template file '..\template_hist_ss\drncond-cn_inst0_constant.csv.tpl' took: 0:00:00.039825
+2023-01-27 14:16:32.720049 finished: adding constant type m style parameters for file(s) ['DRN_0000.dat'] took: 0:00:00.056750
+2023-01-27 14:16:32.720049 starting: adding grid type a style parameters for file(s) ['DRN_0000.dat']
+2023-01-27 14:16:32.720049 finished: using geostruct:name:struct1,nugget:0.0,structures:
+name:var1,contribution:1.0,a:100.0,anisotropy:1.0,bearing:0.0
+ took: 0:00:00.267823
+2023-01-27 14:16:32.720049 starting: loading list-style ..\template_hist_ss\DRN_0000.dat
+2023-01-27 14:16:32.721045 starting: reading list-style file: ..\template_hist_ss\DRN_0000.dat
+2023-01-27 14:16:32.727018 finished: reading list-style file: ..\template_hist_ss\DRN_0000.dat took: 0:00:00.005973
+2023-01-27 14:16:32.727018 loaded list-style '..\template_hist_ss\DRN_0000.dat' of shape (1259, 5)
+2023-01-27 14:16:32.732992 finished: loading list-style ..\template_hist_ss\DRN_0000.dat took: 0:00:00.012943
+2023-01-27 14:16:32.733988 starting: writing list-style template file '..\template_hist_ss\drnelev-gr_inst0_grid.csv.tpl'
+2023-01-27 14:16:32.746931 WARNING: get_xy() warning: position of i and j in index_cols not specified, assume (i,j) are final two entries in index_cols.
+2023-01-27 14:16:32.818616 finished: writing list-style template file '..\template_hist_ss\drnelev-gr_inst0_grid.csv.tpl' took: 0:00:00.084628
+2023-01-27 14:16:32.825300 finished: adding grid type a style parameters for file(s) ['DRN_0000.dat'] took: 0:00:00.105251
+2023-01-27 14:16:32.825586 starting: adding constant type a style parameters for file(s) ['DRN_0000.dat']
+2023-01-27 14:16:32.825586 starting: loading list-style ..\template_hist_ss\DRN_0000.dat
+2023-01-27 14:16:32.825586 starting: reading list-style file: ..\template_hist_ss\DRN_0000.dat
+2023-01-27 14:16:32.831564 finished: reading list-style file: ..\template_hist_ss\DRN_0000.dat took: 0:00:00.005978
+2023-01-27 14:16:32.831564 loaded list-style '..\template_hist_ss\DRN_0000.dat' of shape (1259, 5)
+2023-01-27 14:16:32.838528 finished: loading list-style ..\template_hist_ss\DRN_0000.dat took: 0:00:00.012942
+2023-01-27 14:16:32.838528 starting: writing list-style template file '..\template_hist_ss\drnelev-cn_inst0_constant.csv.tpl'
+2023-01-27 14:16:32.888842 finished: writing list-style template file '..\template_hist_ss\drnelev-cn_inst0_constant.csv.tpl' took: 0:00:00.050314
+2023-01-27 14:16:32.893332 finished: adding constant type a style parameters for file(s) ['DRN_0000.dat'] took: 0:00:00.067746
+2023-01-27 14:16:32.893332 transform was not passed, setting default tranform to 'log'
+2023-01-27 14:16:32.893332 starting: adding grid type m style parameters for file(s) ['hk_layer_1.ref']
+2023-01-27 14:16:32.893332 starting: using geostruct:name:struct1,nugget:0.0,structures:
+name:var1,contribution:1.0,a:400.0,anisotropy:1.0,bearing:0.0
+
+2023-01-27 14:16:32.893332 starting: loading array ..\template_hist_ss\hk_layer_1.ref
+2023-01-27 14:16:32.915319 finished: loading array ..\template_hist_ss\hk_layer_1.ref took: 0:00:00.021987
+2023-01-27 14:16:32.915319 loaded array '..\Dunedin_SS_base\hk_layer_1.ref' of shape (90, 80)
+2023-01-27 14:16:32.926275 starting: writing array-style template file '..\template_hist_ss\hk-gr_inst0_grid.csv.tpl'
+2023-01-27 14:16:32.926275 starting: writing template file ..\template_hist_ss\hk-gr_inst0_grid.csv.tpl for ['hk-gr_inst:0']
+2023-01-27 14:16:32.979239 finished: writing template file ..\template_hist_ss\hk-gr_inst0_grid.csv.tpl for ['hk-gr_inst:0'] took: 0:00:00.052964
+2023-01-27 14:16:32.979239 starting: writing array-based template file '..\template_hist_ss\hk-gr_inst0_grid.csv.tpl'
+2023-01-27 14:16:32.979239 saving zone array ..\template_hist_ss\hk-gr_inst0_grid.csv.zone for tpl file ..\template_hist_ss\hk-gr_inst0_grid.csv.tpl
+2023-01-27 14:16:32.991195 finished: adding grid type m style parameters for file(s) ['hk_layer_1.ref'] took: 0:00:00.097863
+2023-01-27 14:16:32.991195 transform was not passed, setting default tranform to 'log'
+2023-01-27 14:16:32.991195 starting: adding constant type m style parameters for file(s) ['hk_layer_1.ref']
+2023-01-27 14:16:32.991195 starting: loading array ..\template_hist_ss\hk_layer_1.ref
+2023-01-27 14:16:32.993187 finished: loading array ..\template_hist_ss\hk_layer_1.ref took: 0:00:00.001992
+2023-01-27 14:16:32.993187 loaded array '..\Dunedin_SS_base\hk_layer_1.ref' of shape (90, 80)
+2023-01-27 14:16:33.002197 starting: writing array-style template file '..\template_hist_ss\hk-cn_inst0_constant.csv.tpl'
+2023-01-27 14:16:33.002197 starting: writing template file ..\template_hist_ss\hk-cn_inst0_constant.csv.tpl for ['hk-cn_inst:0']
+2023-01-27 14:16:33.029311 finished: writing template file ..\template_hist_ss\hk-cn_inst0_constant.csv.tpl for ['hk-cn_inst:0'] took: 0:00:00.027114
+2023-01-27 14:16:33.029311 starting: writing array-based template file '..\template_hist_ss\hk-cn_inst0_constant.csv.tpl'
+2023-01-27 14:16:33.029311 saving zone array ..\template_hist_ss\hk-cn_inst0_constant.csv.zone for tpl file ..\template_hist_ss\hk-cn_inst0_constant.csv.tpl
+2023-01-27 14:16:33.037276 finished: adding constant type m style parameters for file(s) ['hk_layer_1.ref'] took: 0:00:00.046081
+2023-01-27 14:16:33.037276 transform was not passed, setting default tranform to 'log'
+2023-01-27 14:16:33.037276 starting: adding grid type m style parameters for file(s) ['rech_0.ref']
+2023-01-27 14:16:33.037276 finished: using geostruct:name:struct1,nugget:0.0,structures:
+name:var1,contribution:1.0,a:400.0,anisotropy:1.0,bearing:0.0
+ took: 0:00:00.143944
+2023-01-27 14:16:33.037276 starting: loading array ..\template_hist_ss\rech_0.ref
+2023-01-27 14:16:33.067197 finished: loading array ..\template_hist_ss\rech_0.ref took: 0:00:00.029921
+2023-01-27 14:16:33.067197 loaded array '..\Dunedin_SS_base\rech_0.ref' of shape (90, 80)
+2023-01-27 14:16:33.080230 starting: writing array-style template file '..\template_hist_ss\sprch-gr_inst0_grid.csv.tpl'
+2023-01-27 14:16:33.080230 starting: writing template file ..\template_hist_ss\sprch-gr_inst0_grid.csv.tpl for ['sprch-gr_inst:0']
+2023-01-27 14:16:33.132655 finished: writing template file ..\template_hist_ss\sprch-gr_inst0_grid.csv.tpl for ['sprch-gr_inst:0'] took: 0:00:00.052425
+2023-01-27 14:16:33.132655 starting: writing array-based template file '..\template_hist_ss\sprch-gr_inst0_grid.csv.tpl'
+2023-01-27 14:16:33.132655 saving zone array ..\template_hist_ss\sprch-gr_inst0_grid.csv.zone for tpl file ..\template_hist_ss\sprch-gr_inst0_grid.csv.tpl
+2023-01-27 14:16:33.144603 finished: adding grid type m style parameters for file(s) ['rech_0.ref'] took: 0:00:00.107327
+2023-01-27 14:16:33.144603 transform was not passed, setting default tranform to 'log'
+2023-01-27 14:16:33.144603 starting: adding constant type m style parameters for file(s) ['rech_0.ref']
+2023-01-27 14:16:33.144603 starting: loading array ..\template_hist_ss\rech_0.ref
+2023-01-27 14:16:33.146594 finished: loading array ..\template_hist_ss\rech_0.ref took: 0:00:00.001991
+2023-01-27 14:16:33.146594 loaded array '..\Dunedin_SS_base\rech_0.ref' of shape (90, 80)
+2023-01-27 14:16:33.156593 starting: writing array-style template file '..\template_hist_ss\sprch-cn_inst0_constant.csv.tpl'
+2023-01-27 14:16:33.157550 starting: writing template file ..\template_hist_ss\sprch-cn_inst0_constant.csv.tpl for ['sprch-cn_inst:0']
+2023-01-27 14:16:33.189406 finished: writing template file ..\template_hist_ss\sprch-cn_inst0_constant.csv.tpl for ['sprch-cn_inst:0'] took: 0:00:00.031856
+2023-01-27 14:16:33.189406 starting: writing array-based template file '..\template_hist_ss\sprch-cn_inst0_constant.csv.tpl'
+2023-01-27 14:16:33.189406 saving zone array ..\template_hist_ss\sprch-cn_inst0_constant.csv.zone for tpl file ..\template_hist_ss\sprch-cn_inst0_constant.csv.tpl
+2023-01-27 14:16:33.198366 finished: adding constant type m style parameters for file(s) ['rech_0.ref'] took: 0:00:00.053763
+2023-01-27 14:16:33.198366 transform was not passed, setting default tranform to 'log'
+2023-01-27 14:16:33.198366 starting: adding grid type m style parameters for file(s) ['GHB_0000.dat']
+2023-01-27 14:16:33.198366 starting: using geostruct:name:struct1,nugget:0.0,structures:
+name:var1,contribution:1.0,a:400.0,anisotropy:1.0,bearing:0.0
+
+2023-01-27 14:16:33.198366 starting: loading list-style ..\template_hist_ss\GHB_0000.dat
+2023-01-27 14:16:33.199361 starting: reading list-style file: ..\template_hist_ss\GHB_0000.dat
+2023-01-27 14:16:33.203386 finished: reading list-style file: ..\template_hist_ss\GHB_0000.dat took: 0:00:00.004025
+2023-01-27 14:16:33.203386 loaded list-style '..\template_hist_ss\GHB_0000.dat' of shape (115, 5)
+2023-01-27 14:16:33.206374 finished: loading list-style ..\template_hist_ss\GHB_0000.dat took: 0:00:00.008008
+2023-01-27 14:16:33.206374 starting: writing list-style template file '..\template_hist_ss\ghbcond-gr_inst0_grid.csv.tpl'
+2023-01-27 14:16:33.211352 WARNING: get_xy() warning: position of i and j in index_cols not specified, assume (i,j) are final two entries in index_cols.
+2023-01-27 14:16:33.229231 finished: writing list-style template file '..\template_hist_ss\ghbcond-gr_inst0_grid.csv.tpl' took: 0:00:00.022857
+2023-01-27 14:16:33.233254 finished: adding grid type m style parameters for file(s) ['GHB_0000.dat'] took: 0:00:00.034888
+2023-01-27 14:16:33.237237 transform was not passed, setting default tranform to 'log'
+2023-01-27 14:16:33.237237 starting: adding constant type m style parameters for file(s) ['GHB_0000.dat']
+2023-01-27 14:16:33.237237 starting: loading list-style ..\template_hist_ss\GHB_0000.dat
+2023-01-27 14:16:33.237237 starting: reading list-style file: ..\template_hist_ss\GHB_0000.dat
+2023-01-27 14:16:33.239228 finished: reading list-style file: ..\template_hist_ss\GHB_0000.dat took: 0:00:00.001991
+2023-01-27 14:16:33.239228 loaded list-style '..\template_hist_ss\GHB_0000.dat' of shape (115, 5)
+2023-01-27 14:16:33.241180 finished: loading list-style ..\template_hist_ss\GHB_0000.dat took: 0:00:00.003943
+2023-01-27 14:16:33.241180 starting: writing list-style template file '..\template_hist_ss\ghb-hb-cond_inst0_constant.csv.tpl'
+2023-01-27 14:16:33.255120 finished: writing list-style template file '..\template_hist_ss\ghb-hb-cond_inst0_constant.csv.tpl' took: 0:00:00.013940
+2023-01-27 14:16:33.258148 finished: adding constant type m style parameters for file(s) ['GHB_0000.dat'] took: 0:00:00.020911
+2023-01-27 14:16:33.258148 transform was not passed, setting default tranform to 'log'
+2023-01-27 14:16:33.259143 starting: adding constant type m style parameters for file(s) ['GHB_0000.dat']
+2023-01-27 14:16:33.259143 starting: loading list-style ..\template_hist_ss\GHB_0000.dat
+2023-01-27 14:16:33.259143 starting: reading list-style file: ..\template_hist_ss\GHB_0000.dat
+2023-01-27 14:16:33.260139 finished: reading list-style file: ..\template_hist_ss\GHB_0000.dat took: 0:00:00.000996
+2023-01-27 14:16:33.260139 loaded list-style '..\template_hist_ss\GHB_0000.dat' of shape (115, 5)
+2023-01-27 14:16:33.263125 finished: loading list-style ..\template_hist_ss\GHB_0000.dat took: 0:00:00.003982
+2023-01-27 14:16:33.263125 starting: writing list-style template file '..\template_hist_ss\ghb-sc-cond_inst0_constant.csv.tpl'
+2023-01-27 14:16:33.278018 finished: writing list-style template file '..\template_hist_ss\ghb-sc-cond_inst0_constant.csv.tpl' took: 0:00:00.014893
+2023-01-27 14:16:33.282001 finished: adding constant type m style parameters for file(s) ['GHB_0000.dat'] took: 0:00:00.022858
+2023-01-27 14:16:33.701221 starting: adding observations from output file hds.csv
+2023-01-27 14:16:33.701221 starting: adding observations from tabular output file '['hds.csv']'
+2023-01-27 14:16:33.702258 starting: reading list-style file: ..\template_hist_ss\hds.csv
+2023-01-27 14:16:33.732232 finished: reading list-style file: ..\template_hist_ss\hds.csv took: 0:00:00.029974
+2023-01-27 14:16:33.746223 starting: building insfile for tabular output file hds.csv
+2023-01-27 14:16:33.788684 finished: building insfile for tabular output file hds.csv took: 0:00:00.042461
+2023-01-27 14:16:33.788684 starting: adding observation from instruction file '..\template_hist_ss\hds.csv.ins'
+2023-01-27 14:16:33.924249 finished: adding observation from instruction file '..\template_hist_ss\hds.csv.ins' took: 0:00:00.135565
+2023-01-27 14:16:33.927233 finished: adding observations from tabular output file '['hds.csv']' took: 0:00:00.226012
+2023-01-27 14:16:33.927233 finished: adding observations from output file hds.csv took: 0:00:00.226012
+2023-01-27 14:16:33.928228 starting: adding observations from output file hds.csv
+2023-01-27 14:16:33.928228 starting: adding observations from tabular output file '['hds.csv']'
+2023-01-27 14:16:33.928228 starting: reading list-style file: ..\template_hist_ss\hds.csv
+2023-01-27 14:16:33.932278 finished: reading list-style file: ..\template_hist_ss\hds.csv took: 0:00:00.004050
+2023-01-27 14:16:33.942290 starting: building insfile for tabular output file hds.csv
+2023-01-27 14:16:33.987251 finished: building insfile for tabular output file hds.csv took: 0:00:00.044961
+2023-01-27 14:16:33.987251 starting: adding observation from instruction file '..\template_hist_ss\lthds.csv.ins'
+2023-01-27 14:16:34.129283 finished: adding observation from instruction file '..\template_hist_ss\lthds.csv.ins' took: 0:00:00.142032
+2023-01-27 14:16:34.132264 finished: adding observations from tabular output file '['hds.csv']' took: 0:00:00.204036
+2023-01-27 14:16:34.132264 finished: adding observations from output file hds.csv took: 0:00:00.204036
+2023-01-27 14:16:34.133216 starting: adding observations from output file welobs.csv
+2023-01-27 14:16:34.133216 starting: adding observations from tabular output file '['welobs.csv']'
+2023-01-27 14:16:34.133216 starting: reading list-style file: ..\template_hist_ss\welobs.csv
+2023-01-27 14:16:34.152278 finished: reading list-style file: ..\template_hist_ss\welobs.csv took: 0:00:00.019062
+2023-01-27 14:16:34.155263 starting: building insfile for tabular output file welobs.csv
+2023-01-27 14:16:34.161639 finished: building insfile for tabular output file welobs.csv took: 0:00:00.006376
+2023-01-27 14:16:34.161639 starting: adding observation from instruction file '..\template_hist_ss\welobs.csv.ins'
+2023-01-27 14:16:34.186577 finished: adding observation from instruction file '..\template_hist_ss\welobs.csv.ins' took: 0:00:00.024938
+2023-01-27 14:16:34.187573 finished: adding observations from tabular output file '['welobs.csv']' took: 0:00:00.054357
+2023-01-27 14:16:34.187573 finished: adding observations from output file welobs.csv took: 0:00:00.054357
+2023-01-27 14:16:34.223367 starting: adding observations from output file drains.csv
+2023-01-27 14:16:34.223367 starting: adding observations from tabular output file '['drains.csv']'
+2023-01-27 14:16:34.223367 starting: reading list-style file: ..\template_hist_ss\drains.csv
+2023-01-27 14:16:34.243322 finished: reading list-style file: ..\template_hist_ss\drains.csv took: 0:00:00.019955
+2023-01-27 14:16:34.248300 starting: building insfile for tabular output file drains.csv
+2023-01-27 14:16:34.267176 finished: building insfile for tabular output file drains.csv took: 0:00:00.018876
+2023-01-27 14:16:34.267176 starting: adding observation from instruction file '..\template_hist_ss\drains.csv.ins'
+2023-01-27 14:16:34.313971 finished: adding observation from instruction file '..\template_hist_ss\drains.csv.ins' took: 0:00:00.046795
+2023-01-27 14:16:34.315962 finished: adding observations from tabular output file '['drains.csv']' took: 0:00:00.092595
+2023-01-27 14:16:34.315962 finished: adding observations from output file drains.csv took: 0:00:00.092595
+2023-01-27 14:16:34.315962 starting: adding observations from output file drains_sum.csv
+2023-01-27 14:16:34.315962 starting: adding observations from tabular output file '['drains_sum.csv']'
+2023-01-27 14:16:34.315962 starting: reading list-style file: ..\template_hist_ss\drains_sum.csv
+2023-01-27 14:16:34.326914 finished: reading list-style file: ..\template_hist_ss\drains_sum.csv took: 0:00:00.010952
+2023-01-27 14:16:34.328905 starting: building insfile for tabular output file drains_sum.csv
+2023-01-27 14:16:34.335875 finished: building insfile for tabular output file drains_sum.csv took: 0:00:00.006970
+2023-01-27 14:16:34.336875 starting: adding observation from instruction file '..\template_hist_ss\drains_sum.csv.ins'
+2023-01-27 14:16:34.355787 finished: adding observation from instruction file '..\template_hist_ss\drains_sum.csv.ins' took: 0:00:00.018912
+2023-01-27 14:16:34.356782 finished: adding observations from tabular output file '['drains_sum.csv']' took: 0:00:00.040820
+2023-01-27 14:16:34.356782 finished: adding observations from output file drains_sum.csv took: 0:00:00.040820
+2023-01-27 14:16:34.388643 starting: adding observations from output file head_dep_bounds.csv
+2023-01-27 14:16:34.388643 starting: adding observations from tabular output file '['head_dep_bounds.csv']'
+2023-01-27 14:16:34.389639 starting: reading list-style file: ..\template_hist_ss\head_dep_bounds.csv
+2023-01-27 14:16:34.407559 finished: reading list-style file: ..\template_hist_ss\head_dep_bounds.csv took: 0:00:00.017920
+2023-01-27 14:16:34.408555 starting: building insfile for tabular output file head_dep_bounds.csv
+2023-01-27 14:16:34.416520 finished: building insfile for tabular output file head_dep_bounds.csv took: 0:00:00.007965
+2023-01-27 14:16:34.416520 starting: adding observation from instruction file '..\template_hist_ss\head_dep_bounds.csv.ins'
+2023-01-27 14:16:34.446943 finished: adding observation from instruction file '..\template_hist_ss\head_dep_bounds.csv.ins' took: 0:00:00.030423
+2023-01-27 14:16:34.448934 finished: adding observations from tabular output file '['head_dep_bounds.csv']' took: 0:00:00.060291
+2023-01-27 14:16:34.448934 finished: adding observations from output file head_dep_bounds.csv took: 0:00:00.060291
+2023-01-27 14:16:34.448934 starting: adding observations from output file head_dep_bounds_sum.csv
+2023-01-27 14:16:34.448934 starting: adding observations from tabular output file '['head_dep_bounds_sum.csv']'
+2023-01-27 14:16:34.448934 starting: reading list-style file: ..\template_hist_ss\head_dep_bounds_sum.csv
+2023-01-27 14:16:34.459886 finished: reading list-style file: ..\template_hist_ss\head_dep_bounds_sum.csv took: 0:00:00.010952
+2023-01-27 14:16:34.460881 starting: building insfile for tabular output file head_dep_bounds_sum.csv
+2023-01-27 14:16:34.468845 finished: building insfile for tabular output file head_dep_bounds_sum.csv took: 0:00:00.007964
+2023-01-27 14:16:34.468845 starting: adding observation from instruction file '..\template_hist_ss\head_dep_bounds_sum.csv.ins'
+2023-01-27 14:16:34.483781 finished: adding observation from instruction file '..\template_hist_ss\head_dep_bounds_sum.csv.ins' took: 0:00:00.014936
+2023-01-27 14:16:34.484776 finished: adding observations from tabular output file '['head_dep_bounds_sum.csv']' took: 0:00:00.035842
+2023-01-27 14:16:34.484776 finished: adding observations from output file head_dep_bounds_sum.csv took: 0:00:00.035842
+2023-01-27 14:16:34.484776 starting: adding observations from output file GHB_0000.dat
+2023-01-27 14:16:34.484776 starting: adding observations from tabular output file '['GHB_0000.dat']'
+2023-01-27 14:16:34.484776 starting: reading list-style file: ..\template_hist_ss\GHB_0000.dat
+2023-01-27 14:16:34.486767 finished: reading list-style file: ..\template_hist_ss\GHB_0000.dat took: 0:00:00.001991
+2023-01-27 14:16:34.487763 starting: building insfile for tabular output file GHB_0000.dat
+2023-01-27 14:16:34.494731 finished: building insfile for tabular output file GHB_0000.dat took: 0:00:00.006968
+2023-01-27 14:16:34.494731 starting: adding observation from instruction file '..\template_hist_ss\GHB_0000.dat.ins'
+2023-01-27 14:16:34.518671 finished: adding observation from instruction file '..\template_hist_ss\GHB_0000.dat.ins' took: 0:00:00.023940
+2023-01-27 14:16:34.519664 finished: adding observations from tabular output file '['GHB_0000.dat']' took: 0:00:00.034888
+2023-01-27 14:16:34.520660 finished: adding observations from output file GHB_0000.dat took: 0:00:00.035884
+2023-01-27 14:16:35.101529 forward_run line:pyemu.os_utils.run(r'mfnwt SouthDun_SS.nam')
+
+2023-01-27 14:16:35.333524 starting: drawing realizations
+2023-01-27 14:16:35.339498 starting: spectral simulation for grid-scale pars
+2023-01-27 14:16:35.398248 starting: SpecSim: drawing 50 realization for group hk-gr with 3640 pars, (log) variance 0.4444444444444444 (sill 0.4444444444444444)
+2023-01-27 14:16:35.555621 finished: SpecSim: drawing 50 realization for group hk-gr with 3640 pars, (log) variance 0.4444444444444444 (sill 0.4444444444444444) took: 0:00:00.157373
+2023-01-27 14:16:35.561595 starting: SpecSim: drawing 50 realization for group sprch-gr with 3640 pars, (log) variance 0.01006878425438406 (sill 0.01006878425438406)
+2023-01-27 14:16:35.690408 finished: SpecSim: drawing 50 realization for group sprch-gr with 3640 pars, (log) variance 0.01006878425438406 (sill 0.01006878425438406) took: 0:00:00.128813
+2023-01-27 14:16:35.705350 finished: spectral simulation for grid-scale pars took: 0:00:00.365852
+2023-01-27 14:16:35.705350 starting: Drawing 2639 non-specsim pars
+2023-01-27 14:16:36.824284 finished: Drawing 2639 non-specsim pars took: 0:00:01.118934
+2023-01-27 14:16:36.824284 starting: Joining specsim and non-specsim pars
+2023-01-27 14:16:36.828867 finished: Joining specsim and non-specsim pars took: 0:00:00.004583
+2023-01-27 14:16:36.828867 finished: drawing realizations took: 0:00:01.495343
