@@ -327,11 +327,27 @@ def build_from_orig(version="ss", new_d=None, run=True, r_d='..'):
     if run:
         m.run_model()
     return m
-    
+
  
 def setup_pst(new_m, nreals=1000, vis_cov=False, r_d='..'):
-    # SETUP PEST INTERFACE
-    # define spatial ref
+    """Setup PEST interface for model.
+    
+    
+    Parameters
+    ----------
+    new_m : Modflow or str
+        MODFLOW model to wrap PEST interface around. Suport setup around history or predicitve model, 
+        as indicated by perlen or string in name
+    nreals : int, optional
+        Number of realisations to draw. Default is 1000!
+    vis_cov : bool, optional
+        Option to build an plot full impression of paramter covariance matrix. 
+        Can be big and slow so. Default is False
+    r_d : str or path-like
+        Where to start building. Default is '..' to move up one directory.
+    
+    """
+    # define spatial ref while finding out which model version to build around
     # TODO these "version" definitions may need refining
     #  for alternative history and predicitve model temporal discretisation
     try:
@@ -847,7 +863,7 @@ def setup_pst(new_m, nreals=1000, vis_cov=False, r_d='..'):
     assert os.path.exists(res_file), res_file
     pst.set_res(res_file)
     print(f"PHI = {pst.phi}")
-    return pst
+    return pst, pf
 
 
 def attach_scenario(model=None, scen="SSP5", run=True):
@@ -874,7 +890,7 @@ def attach_scenario(model=None, scen="SSP5", run=True):
         # if csv doesnt exist, read xlsx
         # pandas can't handle too much as ns resolution
         data = pd.read_excel(fname.replace("csv", "xlsx"),
-                             header=0, skiprows=1, index_col=0)
+                             header=0, skiprows=0, index_col=0)
         data.to_csv(fname)
     else:
         data = pd.read_csv(fname, index_col=0)

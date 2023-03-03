@@ -124,7 +124,7 @@ def wl_xlsx2csv(data_d="data"):
 def prep_and_run(pst, t_d="template", m_d="master",
                  noptmax=-1, nreals=1000, r_d="..",
                  prior_pe="prior_pe.jcb", post_pe=None, 
-                 scen=None, nworker=15):
+                 scen=None, nworker=15, cleanup=True):
     import pyemu
     # PREP and RUN SWEEP
     t_d = os.path.join(r_d, t_d)
@@ -176,7 +176,7 @@ def prep_and_run(pst, t_d="template", m_d="master",
         num_workers=nworker,  # restrict number of parallel workers for binder demo to avoid throttling
         master_dir=m_d, 
         worker_root=r_d,
-        cleanup=False
+        cleanup=cleanup
     )
 
 
@@ -275,3 +275,48 @@ def try_load_ensemble(pst, fname, kind='par', **kwargs):
             print(f"...failed. Trying {fname}...")
             ensemble = pd.read_csv(fname.replace(".jcb", ".csv"), low_memory=False, **kwargs)
     return ensemble
+
+
+def extract_hdobs_to_pkl(pst):
+    import pickle
+    # Reading pest control file and obs ensemble (outputs)
+    if isinstance(pst, (str, Path)):
+        pst=pyemu.Pst(os.path.join(pst, "Dunedin_Pred_base.pst"))
+    md = Path(pst.filename).parent
+    obs = pst.observation_data
+    # extracting just w/l obs everywhere at all times
+    hdobs = obs.loc[(obs.oname=='hd')].copy()
+    hdobs["cellid"] = hdobs[['k','i','j']].apply('_'.join, axis=1) # string based cellid (for referencing later)
+    hdobs[["kper", 'k','i','j']] =  hdobs[["kper", 'k','i','j']].astype(int) # converting kij to integer
+    with open(Path(md, "hdobs.pkl"), 'wb') as fp:
+        pickle.dump(hdobs, fp)
+    return hdobs
+
+
+def extract_hdoe_to_pkl(oe, obs=None, pst=None):
+    import pickle
+    if not isinstance(oe, (str, Path)):
+        if obs is None:
+            assert pst is not None, "Need to pass obs of pst object"
+            # need pst
+            if isinstance(pst, (str, Path)):
+                pst=pyemu.Pst(os.path.join(pst, "Dunedin_Pred_base.pst"))
+            obs = pst.observation_data.loc[(obs.oname=='hd')]
+            # assuming that save dir is that same as pst
+            md = Path(pst.filename).parent
+        if pst is None:
+            # dont have info on where to save
+            md = '.'
+        else:
+            md = md = Path(pst.filename).parent
+    else:
+        assert pst is not None, "need pst to read ensemble"
+        if isinstance(pst, (str, Path)):
+            pst=pyemu.Pst(os.path.join(pst, "Dunedin_Pred_base.pst"))
+        if obs is None:
+            obs = pst.observation_data.loc[(obs.oname=='hd')]
+        md = oe
+        oe=pyemu.ObservationEnsemble.from_binary(pst,os.path.join(md,"Dunedin_Pred_base.0.obs.jcb"))._df
+    hdoe = oe.loc[:, obs.index]
+    with open(Path(md, f"hdoe.pkl"), 'wb') as fp:
+        pickle.dump(hdoe, fp)
