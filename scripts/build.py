@@ -328,7 +328,52 @@ def build_from_orig(version="ss", new_d=None, run=True, r_d='..'):
         m.run_model()
     return m
 
- 
+
+def _get_sr_and_version(new_m, r_d='..'):
+    # define spatial ref while finding out which model version to build around
+    # TODO these "version" definitions may need refining
+    #  for alternative history and predicitve model temporal discretisation
+    try:
+        sr = pyemu.helpers.SpatialReference(
+            delr=new_m.dis.delr.array, delc=new_m.dis.delc.array,
+            xll=new_m.modelgrid.xoffset, yll=new_m.modelgrid.yoffset
+        )
+        if len(new_m.dis.perlen) == 1:
+            period = 'hist'
+            version = 'ss'
+        elif len(new_m.dis.perlen) == 101:
+            period = 'proj'
+            version = '101'
+        else:
+            raise ValueError(f"unexpected number of stress periods: "
+                             f"{new_m.dis.perlen}")
+
+    except AttributeError:
+        if 'ss' in new_m.lower():
+            period = 'hist'
+            modelname = "SouthDun_SS"
+            version = 'ss'
+        elif 'pred' in new_m.lower():
+            period = 'proj'
+            modelname = "SouthDun_100"
+            version = '101'
+        else:
+            raise ValueError("model or model string (new_m) argument not understood")
+        new_m = flopy.modflow.Modflow.load(
+            f=f"{modelname}.nam",
+            model_ws=os.path.join(r_d, new_m),
+            version='mfnwt',
+            exe_name='mfnwt.exe',
+            verbose=True,
+            check=True
+        )
+        sr = pyemu.helpers.SpatialReference(
+            delr=new_m.modelgrid.delr, delc=new_m.modelgrid.delc,
+            xll=new_m.modelgrid.xoffset, yll=new_m.modelgrid.yoffset
+        )
+    return new_m, sr, period, version
+
+
 def setup_pst(new_m, nreals=1000, vis_cov=False, r_d='..'):
     """Setup PEST interface for model.
     
@@ -347,48 +392,12 @@ def setup_pst(new_m, nreals=1000, vis_cov=False, r_d='..'):
         Where to start building. Default is '..' to move up one directory.
     
     """
-    # define spatial ref while finding out which model version to build around
-    # TODO these "version" definitions may need refining
-    #  for alternative history and predicitve model temporal discretisation
-    try:
-        sr = pyemu.helpers.SpatialReference(
-            delr=new_m.dis.delr.array, delc=new_m.dis.delc.array, 
-            xll=new_m.modelgrid.xoffset, yll=new_m.modelgrid.yoffset
-        )
-        if len(new_m.dis.perlen) == 1:
-            period = 'hist'
-            version = 'ss'
-        elif len(new_m.dis.perlen) == 101:
-            period = 'proj'
-            version = '101'
-        modelname = new_m.name
-    except AttributeError:
-        if 'ss' in new_m.lower():
-            period = 'hist'
-            modelname = "SouthDun_SS"
-            version = 'ss'
-        elif 'pred' in new_m.lower():
-            period = 'proj'
-            modelname = "SouthDun_100"
-            version = '101'
-        else:
-            raise ValueError("model or model string (new_m) argument not understood")
-        new_m = flopy.modflow.Modflow.load(
-            f=f"{modelname}.nam", 
-            model_ws=os.path.join(r_d, new_m), 
-            version='mfnwt',
-            exe_name='mfnwt.exe', 
-            verbose=True, 
-            check=True
-        )
-        sr = pyemu.helpers.SpatialReference(
-            delr=new_m.dis.delr.array, delc=new_m.dis.delc.array, 
-            xll=new_m.modelgrid.xoffset, yll=new_m.modelgrid.yoffset
-        )
+    new_m, sr, period, version = _get_sr_and_version(new_m, r_d)
+    modelname = new_m.name
     t_d = f"template_{period}_{version}"
-    startdatetime = new_m.start_datetime  #
-    dts = (pd.to_datetime(startdatetime) +
-           pd.to_timedelta(np.cumsum(new_m.dis.perlen.array), unit='d'))
+    # startdatetime = new_m.start_datetime  #
+    # dts = (pd.to_datetime(startdatetime) +
+    #        pd.to_timedelta(np.cumsum(new_m.dis.perlen.array), unit='d'))
     
     # Instantiate PstFrom object
     pf = pyemu.utils.PstFrom(
@@ -406,21 +415,21 @@ def setup_pst(new_m, nreals=1000, vis_cov=False, r_d='..'):
     # Add some Pars
     # drn cond pars
     # define a variagram and geostruct for drain conductance covariance 
-    v = pyemu.geostats.ExpVario(contribution=1.0,a=100)
+    v = pyemu.geostats.ExpVario(contribution=1.0, a=100)
     drn_gs = pyemu.geostats.GeoStruct(variograms=v, transform='log')
     drn_files = [f for f in os.listdir(pf.new_d) if "DRN" in f and "dat" in f]
     
     # grid based drain conductance
     pf.add_parameters(drn_files, 
-                      par_type='grid', # cell-by-cell 
-                      lower_bound=0.1, # par ranges define variance
+                      par_type='grid',  # cell-by-cell
+                      lower_bound=0.1,  # par ranges define variance
                       upper_bound=10.,
-                      index_cols=[0,1,2], # tabular list-like input for drains so need these
-                      use_cols=[4], # column that relates to conductance
+                      index_cols=[0, 1, 2],  # tabular list-like input for drains so need these
+                      use_cols=[4],  # column that relates to conductance
                       par_name_base='drncond-gr',
                       pargp='drncond-gr',
                       geostruct=drn_gs
-                     )
+                      )
     
     # global constant drain conductance
     pf.add_parameters(drn_files, 
@@ -488,8 +497,71 @@ def setup_pst(new_m, nreals=1000, vis_cov=False, r_d='..'):
                       zone_array=ib[0]
                      )
 
+    # ADD OBS/OUTPUTS
+    # prep actualy head observation data
+    obs_locs = pd.read_csv(os.path.join("..", "obs_locs", "Cox_Operational_Targets.dat"),
+                           index_col=0, delim_whitespace=True)
+    # loop over dataframe rows, get ij corresponding to well location
+    obs_locs[['i', 'j']] = obs_locs.apply(lambda x:
+                                          pd.Series(new_m.modelgrid.intersect(x.Easting, x.Northing)),
+                                          axis=1).astype(int)
+    obs_locs["k"] = 0  # BIG TODO when we have multi layer!!!!!!!!!!!!!!! (will need wel depths too!)
+    obs_locs["sitename"] = obs_locs.index.map(lambda x:
+                                              x.replace('(', '').replace(')', '').replace('_', '-'))
+    obs_locs.to_csv(os.path.join(pf.new_d, "Cox_Operational_Targets.dat"))
+    # add some obs
+    # convert binary output to nice tabular list file that we can pass to pstfrom
+    hdobsnme, wlobsnme = utils.hds_bin2csv(d=pf.new_d,
+                                           modelfname=f"{modelname}.nam")
+    # Add this file as outputs to track
+    # can be as array files if we want
+    # pf.add_observations("hds_kper0_lay0.csv",  prefix="hd")
+    # or whole tabulated model output
+    pf.add_observations(
+        hdobsnme, ## "hds.csv"
+        prefix="hd",
+        index_cols=['k', 'i', 'j', 'kper'],
+        use_cols='obsval',
+        ofile_sep=','
+    )
+    if period == 'hist':
+        # add less-than inequality as obs too (only for history model)
+        pf.add_observations(
+            hdobsnme, ## "hds.csv"
+            insfile="lthds.csv.ins",
+            prefix="less_hd",
+            index_cols=['k', 'i', 'j', 'kper'],
+            use_cols='obsval',
+            ofile_sep=',',
+            obsgp="less_hd"
+        )
+    pf.add_observations(
+        wlobsnme, ## "welobs.csv"
+        prefix="wl",
+        index_cols=["sitename", 'k', 'i', 'j', 'kper'],
+        use_cols='obsval',
+        ofile_sep=','
+    )
+    # need to add the above function to our forward run script so that
+    # it is also run at model run time
+    pf.add_py_function(
+        os.path.join(r_d, 'scripts', "utils.py"),
+        call_str=f"hds_bin2csv('.', modelfname='{modelname}.nam')",
+        is_pre_cmd=False
+    )
+    pst, pf = continue_setup_pst(pf, new_m, nreals=nreals, vis_cov=vis_cov,
+                                 r_d=r_d)
+    return pst, pf
+    
+
+def continue_setup_pst(pf, new_m, nreals=1000, vis_cov=False, r_d='..'):
+    new_m, sr, period, version = _get_sr_and_version(new_m, r_d)
+    ib = new_m.modelgrid.idomain
+    modelname = new_m.name
     # rch pars
     # get all recharge array files for model
+    v = pyemu.geostats.ExpVario(contribution=1.0,a=400)
+    k_gs = pyemu.geostats.GeoStruct(variograms=v, transform='log')
     rch_files = [f for f in os.listdir(pf.new_d) if "rech" in f and "ref" in f]
     # grid based recharge (applied to all kper)
     pf.add_parameters(rch_files, 
@@ -579,7 +651,7 @@ def setup_pst(new_m, nreals=1000, vis_cov=False, r_d='..'):
         # set up pars on scenario file...
         # check first that it exists -- ok that it is just a dummy file for now
         if not os.path.exists(os.path.join(pf.new_d, "scenario.csv")):
-            attach_scenario(t_d, run=False)
+            attach_scenario(Path(pf.new_d).name, run=False)
         scendf = pd.read_csv(os.path.join(pf.new_d, "scenario.csv"))
         pf.add_parameters("scenario.csv",
                           par_type='constant',
@@ -652,60 +724,7 @@ def setup_pst(new_m, nreals=1000, vis_cov=False, r_d='..'):
                           pargp='ss-cn',
                           zone_array=ib[0]
                           )
-    
-    # ADD OBS/OUTPUTS
-    # prep actualy head observation data 
-    obs_locs = pd.read_csv(os.path.join("..", "obs_locs", "Cox_Operational_Targets.dat"),
-                       index_col=0,delim_whitespace=True)
-    # loop over dataframe rows, get ij corresponding to well location
-    obs_locs[['i','j']] = obs_locs.apply(lambda x: 
-                                         pd.Series(new_m.modelgrid.intersect(x.Easting, x.Northing)), 
-                                         axis=1).astype(int)
-    obs_locs["k"] = 0  # BIG TODO when we have multi layer!!!!!!!!!!!!!!! (will need wel depths too!)
-    obs_locs["sitename"] = obs_locs.index.map(lambda x: 
-                                            x.replace('(','').replace(')','').replace('_','-'))
-    obs_locs.to_csv(os.path.join(pf.new_d, "Cox_Operational_Targets.dat"))
-    
-    # convert binary output to nice tabular list file that we can pass to pstfrom
-    hdobsnme, wlobsnme = utils.hds_bin2csv(d=pf.new_d, 
-                                           modelfname=f"{modelname}.nam")
-    # Add this file as outputs to track
-    # can be as array files if we want
-    # pf.add_observations("hds_kper0_lay0.csv",  prefix="hd")
-    # or whole tabulated model output
-    pf.add_observations(
-        hdobsnme, ## "hds.csv"
-        prefix="hd", 
-        index_cols=['k', 'i', 'j', 'kper'], 
-        use_cols='obsval',
-        ofile_sep=','
-    )
-    if period == 'hist':
-        # add less-than inequality as obs too (only for history model)
-        pf.add_observations(
-            hdobsnme, ## "hds.csv"
-            insfile="lthds.csv.ins",
-            prefix="less_hd",
-            index_cols=['k', 'i', 'j', 'kper'],
-            use_cols='obsval',
-            ofile_sep=',',
-            obsgp="less_hd"
-        )
-    pf.add_observations(
-        wlobsnme, ## "welobs.csv"
-        prefix="wl", 
-        index_cols=["sitename", 'k', 'i', 'j', 'kper'], 
-        use_cols='obsval',
-        ofile_sep=','
-    )
-    # need to add the above function to our forward run script so that 
-    # it is also run at model run time
-    pf.add_py_function(
-        os.path.join(r_d, 'scripts', "utils.py"), 
-        call_str=f"hds_bin2csv('.', modelfname='{modelname}.nam')",
-        is_pre_cmd=False
-    )
-    
+
     # TODO ADD MORE OBS
     # DRAIN FLUXES
     txt = "DRAINS"
@@ -800,6 +819,8 @@ def setup_pst(new_m, nreals=1000, vis_cov=False, r_d='..'):
         #wl2019obssel = allwelobs.loc[wl2019sel].index
 
         # set all that are in 2019-2021 data
+        obs_locs = pd.read_csv(
+            os.path.join(pf.new_d, "Cox_Operational_Targets.dat"))
         welobs = obs.obgnme == 'oname:wl_otype:lst_usecol:obsval'
         obs.loc[welobs , "obsval"] = obs_locs.set_index(obs_locs.sitename.str.lower()
                                                        ).loc[obs.loc[welobs].sitename, 
@@ -875,7 +896,7 @@ def attach_scenario(model=None, scen="SSP5", run=True):
     if model is None:
         # build predictive model for original first
         model = build_from_orig(version='pred', run=False)
-    if isinstance(model, str) or isinstance(model, Path):
+    if isinstance(model, (str, Path)):
         mpath = os.path.join("..", model)
         mname = [p for p in Path(mpath).glob("*.nam")][0]
         mname = mname.relative_to(mpath).name
